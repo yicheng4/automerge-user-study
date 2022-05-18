@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Animal</title>
+  </head>
+
+  <body>
+    <!-- We include a simple collaborative interface as an example;
+      delete this body and replace with your own HTML. -->
+    Showing list numbber:
+    <p id="display0">-1</p>
+    <p id="display1">Animal Type</p>
+    <p id="display2">Enter name</p>
+    <p id="display3">0</p>
+    
+    <div id="app">
+      <form id="myform">
+          <fieldset>
+            
+              <p>Adding:</p>
+              <div>
+                <input type="radio" id="dog"
+                 name="Animal" value="1">
+                <label for="dog">dog</label>
+            
+                <input type="radio" id="cat"
+                 name="Animal" value="2">
+                <label for="cat">cat</label>
+            
+              </div>
+             
+              <br />
+              <label>Name: </label>
+              <input type="text" name="animal_name"/>
+              <br />
+              <label>Height: </label> 
+              <input type="text" id="height" name="height">
+              <br />
+              <label>Obedience level for dogs(0: unknown, 1:bad, 2:okay, 3:bad): </label>
+              <input type="text" name="dog_obedience"/>
+              <br />
+              <label>Cat purrs? (1: true, 0: false): </label>
+              <input type="text" name="cat_purrs"/>
+          </fieldset>
+          <button type="submit">Submit</button>
+          <br />
+          
+      </form>
+      <form id="myform1">
+          <fieldset>
+            
+              <p>Editting the animal looking at:</p>
+              
+              <br />
+              <label>Name: </label>
+              <input type="text" name="animal_name"/>
+              <br />
+              <label>Height: </label> 
+              <input type="text" id="height" name="height">
+              <br />
+              <label>Obedience level for dogs(0: unknown, 1:bad, 2:okay, 3:bad): </label>
+              <input type="text" name="dog_obedience"/>
+              <br />
+              <label>Cat purrs? (1: true, 0: false): </label>
+              <input type="text" name="cat_purrs"/>
+          </fieldset>
+          <button type="submit">Submit</button>
+          <br />
+          
+     </form>
+    <p>Flipping page control</p>
+    <button id="prev">prev</button><button id="next">next</button>
+  </div>
+   
+    
+  
+    
+
+    <!-- Don't include a <script> tag for your main .ts file;
+      HtmlWebpackPlugin will insert it for you. -->
+  </body>
+</html>

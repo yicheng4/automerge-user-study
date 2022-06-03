@@ -15,7 +15,7 @@ const wsURL = wsProtocol + "//" + location.hostname + ":" + WS_PORT;
  * Copied from @collabs/ws-client, but slightly modified
  * to work with Automerge instead.
  */
-class AutomergeWebSocketNetwork {
+ class AutomergeWebSocketNetwork {
   /**
    * Connection to the server.
    *
@@ -83,43 +83,105 @@ class AutomergeWebSocketNetwork {
 /*****************************************************
  * EDIT YOUR CODE BELOW
  *****************************************************/
-// TODO: design a thing that contains animal name and its height.
+
+enum DogObedience {
+  UNKNOWN = 0,
+  BAD = 1,
+  OKAY = 2,
+  GOOD = 3,
+}
+
 (async function () {
-  // Initialization of the automerge data
   var currentDoc: Automerge.FreezeObject<any>;
   currentDoc = Automerge.init();
+  // TODO: declare global variables here. (You can also add things outside the async function)
+  const display3 = document.getElementById("display3")!;
+  const display0 = document.getElementById("display0")!;
   const display1 = document.getElementById("display1")!;
   const display2 = document.getElementById("display2")!;
-  // When refreshDisplay is called, data displayed on html page will be updated.
   function refreshDisplay() {
-    display1.innerHTML = "TODO: call a function to return the animalName.";
-    display2.innerHTML = "TODO: call a function to return the hight of animal.";
+    // Refresh the display, possibly due to a message from another replica.
+    // You may want to call the function explictly in your code.
+    display0.innerHTML = "TODO: return the list index (-1 for nothing in list)"
+    display1.innerHTML = "TODO: return the animal type(Cat or Dog) and status of its special feature (by whatever form you like).";
+    display2.innerHTML = "TODO: return the animalName.";
+    display3.innerHTML = "TODO: return the hight of animal.";
   }
 
-
-  
   function receive(msg: Automerge.BinaryChange[]) : void {
     // TODO: handle the message from other replicas
     // You may find Automerge.applyChanges be helpful
+    // You may find the previous checkpoint be useful
+    // When observe states updates, call refreshDisplay
   }
-  // When getting a message from other replicas, this line will call receive function
+
+  // When getting a message from other replicas, this line will call receive.
   var wsNetwork = new AutomergeWebSocketNetwork(receive, wsURL, "");
-  
+
   const form: HTMLFormElement = <HTMLFormElement>document.querySelector('#myform');
-  form.onsubmit = (e) => {
+  const radioButtons = document.querySelectorAll('input[name="Animal"]');
+  form.onsubmit = (e) => { //adding animal
     e.preventDefault();
     const formData = new FormData(form);
-
-    const animal_name = formData.get('animal_name') as string;
+    var animal_kind : number;
+    for (const radioButton of radioButtons) {
+      const buttons = <HTMLFormElement>radioButton;
+      if (buttons.checked) {
+        animal_kind = +buttons.value;
+        break;
+      }
+    }
+    const formData = new FormData(form);
+    let animal_name = formData.get('animal_name') as string;
     const height_string = formData.get('height') as string;
+    if (animal_name.length === 0){
+      animal_name = " ";
+    }
+    
+    const obedience = formData.get('dog_obedience') as string; //read the dog obedience value
+    const purrs = formData.get('cat_purrs') as string; //read the purrs value
+    // TODO: add an animal to your list
+    // animal_kind is 1 if it is a Dog, is 2 if it is a Cat.
     // animal_name contains the name of animal and height contains the hight of the animal
-    // TODO: apply new values to the animal
-
-    // You may find Automerge.change and Automerge.getChanges will be helpful
+    // Hint: You may find Automerge.change and Automerge.getChanges will be helpful
     // You can use wsNetwork.send(msg) to send message to other replicas.
     // The msg can be constructed using Automerge.getChanges
     
     return false; // prevent reload
   };
+
+
+  const form1: HTMLFormElement = <HTMLFormElement>document.querySelector('#myform1');
+  
+  form1.onsubmit = (e) => { // editting animal
+    e.preventDefault();
+    const formData = new FormData(form1);
+    var oldDoc = currentDoc;
+    var animal_name = formData.get('animal_name') as string;
+    const height_string = formData.get('height') as string;
+    if (animal_name.length === 0){
+      animal_name = " ";
+    }
+    const obedience = formData.get('dog_obedience') as string; // read the new dog obedience value
+    const purrs = formData.get('cat_purrs') as string; // read the new purrs value
+
+    //TODO: edit the animal that is currently shown.
+    return false; // prevent reload
+  };
+  document.getElementById("prev")!.onclick = () => {
+    //TODO: show the previous element on the list
+  };
+  document.getElementById("next")!.onclick = () => {
+    //TODO: show the next element on the list
+  };
+  
+  // You may find Automerge.change and Automerge.getChanges will be helpful
+  // You can use wsNetwork.send(msg) to send message to other replicas.
+  // The msg can be constructed using Automerge.getChanges
+
+  
+
+  
+
   
 })();

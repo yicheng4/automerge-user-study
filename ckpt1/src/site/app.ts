@@ -15,7 +15,7 @@ const wsURL = wsProtocol + "//" + location.hostname + ":" + WS_PORT;
  * Copied from @collabs/ws-client, but slightly modified
  * to work with Automerge instead.
  */
- class AutomergeWebSocketNetwork {
+class AutomergeWebSocketNetwork {
   /**
    * Connection to the server.
    *
@@ -79,75 +79,49 @@ const wsURL = wsProtocol + "//" + location.hostname + ":" + WS_PORT;
     this.ws.send(toSend);
   }
 }
-enum DogObedience {
-  UNKNOWN = 0,
-  BAD = 1,
-  OKAY = 2,
-  GOOD = 3,
-}
+
 /*****************************************************
  * EDIT YOUR CODE BELOW
  *****************************************************/
-// TODO: Create something called "Dog" that has the properties that is contained in "Animal".
-// It has an extra variable that is called "obedience" that takes in "DogObedience"
-
-// TODO: Create something called "Cat" that has the properties from "Animal" in previous task.
-// It has an extra variable that is called "purrs" that takes in "booleans"
-
 
 (async function () {
   // Initialization of the automerge data
   var currentDoc: Automerge.FreezeObject<any>;
   currentDoc = Automerge.init();
-  
   const display1 = document.getElementById("display1")!;
   const display2 = document.getElementById("display2")!;
-  const display3 = document.getElementById("display3")!;
-  // When refreshDisplay is called, data displayed on html page will be updated.
   function refreshDisplay() {
-    display1.innerHTML = "TODO: return the animal type(Cat or Dog) and status of its special feature (by whatever form you like).";
-    display2.innerHTML = "TODO: return the animalName.";
-    display3.innerHTML = "TODO: return the hight of animal.";
+    // Refresh the display, possibly due to a message from another replica.
+    // You may want to call the function explictly in your code.
+    display1.innerHTML = "TODO: call a function to return the animalName.";
+    display2.innerHTML = "TODO: call a function to return the hight of animal.";
   }
 
+
+  
   function receive(msg: Automerge.BinaryChange[]) : void {
-    // This function should be finished in the previous task
+    // TODO: handle the message from other replicas
+    // You may find Automerge.applyChanges be helpful
+    // When observe states updates on other replicas, you may need to call refreshDisplay
   }
+
+  // When getting a message from other replicas, this line will call receive.
   var wsNetwork = new AutomergeWebSocketNetwork(receive, wsURL, "");
-  // Refresh the display when the Collab state changes, possibly
-  // due to a message from another replica.
+  
   const form: HTMLFormElement = <HTMLFormElement>document.querySelector('#myform');
-  const radioButtons = document.querySelectorAll('input[name="Animal"]');
-  form.onsubmit = (e) => {
-    e.preventDefault();
+  form.onsubmit = () => {
     const formData = new FormData(form);
-    var animal_kind : number;
-    for (const radioButton of radioButtons) {
-      const buttons = <HTMLFormElement>radioButton;
-      if (buttons.checked) {
-        animal_kind = +buttons.value;
-        break;
-      }
-    }
-    //animal_kind saves 1 if it is a Dog, saves 2 if it is a Cat.
     const animal_name = formData.get('animal_name') as string;
     const height_string = formData.get('height') as string;
+    let height: number = +height_string;
     // animal_name contains the name of animal and height contains the hight of the animal
-    // TODO: apply new values to the animal shown on the screen 
-    // and also change the type of the animal
+    // TODO: apply new values to the animal
+
+    // You may find Automerge.change and Automerge.getChanges will be helpful
+    // You can use wsNetwork.send(msg) to send message to other replicas.
+    // The msg can be constructed using Automerge.getChanges
     
     return false; // prevent reload
   };
-  // You may find Automerge.change and Automerge.getChanges will be helpful
-  // You can use wsNetwork.send(msg) to send message to other replicas.
-  // The msg can be constructed using Automerge.getChanges
-
-
-
-
-  
-
-  
-
   
 })();

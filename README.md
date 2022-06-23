@@ -4,7 +4,7 @@ The Pittsburgh animal shelter wants to develop a system to keep track of the dif
 
 The application is a web page that allows clients to update the same state concurrently on different devices. We’d like to have a list of animals, each of which has different attributes. There are two kinds of animals – cats and dogs. Users should be able to add and edit individual animals. The app does not allow users to add new kinds of animals.
 
-You have an HTML document and a sketch of how this might work in Typescript, but the part of the code that takes care of collaboration is not yet implemented. You must complete this program so that animals can be collaboratively added and edited.
+You have an HTML document and a sketch of how this might work in Typescript, but the part of the code that takes care of collaboration is not yet implemented. You must complete this program so that animals can be collaboratively added and edited. Users can access the animals stored in the app just like editing Google Docs so that multiple people can access and edit them at the same time.
 
 
 ## What to do

@@ -46,9 +46,9 @@ When you finish a checkpoint, please let the researcher know. If you are plannin
 
 #### Checkpoint1:
 
-To begin, we need a data structure representing the animal that we’d like for our app to store, of course using the `automerge` package. So start by defining a class that would model one instance of an animal, and which is able to construct all of the fields you believe will be required for each animal.
+To begin, we need a data structure representing the animal that we’d like for our app to store, of course using the `automerge` package. So start by defining a data structure that would model one instance of an animal, and which is able to construct all of the fields you believe will be required for each animal.
 
-Once this class representing the animal is defined, you can add it to the application by instantiating it and manipulating it inside of `async function ()`. Here, we would like to collect user inputs from the HTML form and update the states of the animal. Finally, in order for the user to see these updates, we must display these fields in the DOM. Note updates must be visible in the DOM whether the updates are made in the local replica or if updates come in from remote replicas.
+Once this data structure representing the animal is defined, you can add it to the application by instantiating it and manipulating it inside of `async function ()`. Here, we would like to collect user inputs from the HTML form and update the states of the animal. Finally, in order for the user to see these updates, we must display these fields in the DOM. Note updates must be visible in the DOM whether the updates are made in the local replica or if updates come in from remote replicas.
 
 Please create the appropriate automerge `doc`s and fill in the TODOs in `ckpt1/src/site/app.ts`  so that the animal’s `name` (i.e. Alice, Bob) and `height` (i.e. 5 inches) can be collaboratively edited. That way, the animal shelter staff can edit them on different devices!
 At checkpoint1, we only have one animal and the animal shelter staff should be able to update its `name` and `height`.

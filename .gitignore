@@ -1,0 +1,8 @@
+node_modules
+build
+dist
+data/
+ckpt1/.DS_Store
+ckpt2/.DS_Store
+ckpt3/.DS_Store
+.DS_Store

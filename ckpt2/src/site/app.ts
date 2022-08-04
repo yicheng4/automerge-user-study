@@ -133,6 +133,8 @@ enum DogObedience {
         break;
       }
     }
+    const animal_name = formData.get('animal_name') as string;
+    const height_string = formData.get('height') as string;
     const obedience = formData.get('dog_obedience') as string; // read the dog obedience value
     const purrs = formData.get('cat_purrs') as string; // read the purrs value
     // animal_name contains the name of animal and height contains the hight of the animal
